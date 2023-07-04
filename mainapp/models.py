@@ -17,7 +17,7 @@ class Category(models.Model):
 
 
 class Course(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Преподователь')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Преподователь', related_name='course')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Катерия')
     name = models.CharField(max_length=124, verbose_name='Название курса')
     description = models.TextField(verbose_name='Описание курса')
@@ -36,11 +36,9 @@ class Course(models.Model):
 
 
 class CourseSchedule(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс')
-    start_date = models.DateField(verbose_name='Дата начала')
-    end_date = models.DateField(verbose_name='Дата окончания')
-    start_time = models.TimeField(verbose_name='Время начала')
-    end_time = models.TimeField(verbose_name='Время окончания')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс', related_name='course_schedule')
+    start_date = models.DateTimeField(verbose_name='Дата начала и время начало')
+    end_date = models.DateTimeField(verbose_name='Дата окончания и время окончание')
 
     def __str__(self):
         return f'{self.course} - {self.start_date}'

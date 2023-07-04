@@ -20,8 +20,7 @@ class CourseScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseSchedule
         fields = (
-            'id', 'course', 'start_date', 
-            'end_date', 'start_time', 'end_time',
+            'id', 'course', 'start_date', 'end_date',
         )
 
 
